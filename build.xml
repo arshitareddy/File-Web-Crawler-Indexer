@@ -1,0 +1,33 @@
+<project default="run" name="ANTTEST" basedir=".">
+
+<property environment="env"/>
+<property name="srcfolder" value="src/" />
+<property name="binfolder" value="bin/" />
+<property name="jars" value="jarfile/" />
+
+	<path id="jarfiles">
+			<pathelement location="${binfolder}" />
+			<pathelement location="${jars}/jsoup-1.10.2.jar"/>
+	</path>
+
+	<target name="deletedirs">
+		<delete dir="${binfolder}"/>
+	</target>
+
+	
+	<target name="compile" depends="deletedirs">
+		<mkdir dir="${binfolder}"/>
+	  	<javac includeantruntime="false" srcdir="${srcfolder}" destdir="${binfolder}">
+
+	  <classpath refid ="jarfiles" />
+	  	</javac>
+	</target>
+
+	<target name="run" depends="compile" >
+ 	  <java classname = "Mainprmg" classpath = "${binfolder}">
+ 	  	
+	  <classpath refid ="jarfiles" />
+	  </java>
+	</target>
+	
+	</project>
